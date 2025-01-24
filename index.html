@@ -5,16 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cash Register</title>
     <link rel="stylesheet" href="styles.css" />
-    <script src="script.js"></script>
   </head>
   <body>
     <h2>Cash Register Project</h2>
-    <div id="register status"></div>
+    <div id="change-due"></div>
     <div id="customer-part">
-      <label for="customer-cash">Enter cash from customer:</label>
-      <input id="customer-cash-inp" type="number" />
+      <label for="cash">Enter cash from customer:</label>
+      <input id="cash" type="number" />
       <button id="purchase-btn">Purchase</button>
-      <p>Total: $3.26</p>
+      <label for="price">Enter purchase price:</label>
+      <input id="price" type="number" />
+      <button id="price-btn">Change price</button>
+      <p id="total">Total:</p>
     </div>
     <div id="register">
       <p>Change in drawer:</p>
@@ -30,5 +32,6 @@
         <li>Hundreds: $100</li>
       </ul>
     </div>
+    <script src="script.js"></script>
   </body>
 </html>
