@@ -41,4 +41,7 @@ const checkPrice = () => {
     if (price > cash){
         alert("Customer does not have enough money to purchase the item");
     }
+    else if (price == cash){
+        alert("No change due - customer paid with exact cash");
+    } 
   };
