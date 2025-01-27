@@ -24,6 +24,7 @@ let price = 1.87;
 cashBtn.addEventListener("click",() =>{
     cash = cashInput.value;
     console.log(cash)
+    checkPrice();
 })
 
 priceBtn.addEventListener("click",() =>{
@@ -35,3 +36,9 @@ priceBtn.addEventListener("click",() =>{
 const updateTotal = () => {
     total.innerHTML =`Total: $${price}`;
 };
+
+const checkPrice = () => {
+    if (price > cash){
+        alert("Customer does not have enough money to purchase the item");
+    }
+  };
