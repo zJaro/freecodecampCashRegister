@@ -12,6 +12,7 @@ let cid = [
 
 const cashBtn = document.getElementById("purchase-btn");
 const priceBtn = document.getElementById("price-btn");
+const total = document.getElementById("total");
 
 const cashInput = document.getElementById("cash");
 const priceInput = document.getElementById("price");
@@ -27,5 +28,10 @@ cashBtn.addEventListener("click",() =>{
 
 priceBtn.addEventListener("click",() =>{
     price = priceInput.value;
+    updateTotal();
     console.log(price)
 })
+
+const updateTotal = () => {
+    total.innerHTML =`Total: $${price}`;
+};
