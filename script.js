@@ -32,6 +32,8 @@ const priceInput = document.getElementById("price");
 
 let cash = 0;
 let price = 1.87;
+let change = cash - price;
+let diff = price - cash;
 
 cashBtn.addEventListener("click",() =>{
     cash = cashInput.value;
@@ -53,39 +55,46 @@ const checkPrice = () => {
     if (price > cash){
         alert("Customer does not have enough money to purchase the item");
     }
-    else if (price == cash){
+    else if (price === cash){
         alert("No change due - customer paid with exact cash");
         changeDue.value ="No change due - customer paid with exact cash";
         changeDue.innerHTML ="No change due - customer paid with exact cash";
     } 
     else{
-      changeCheck();
+      change = cash - price;
+      console.log(`Change to give back $${change}`);
+      change = changeCount(change,moneyValue[moneyValue.length - 1][1], moneyValue.length - 1);
+      console.log(change)
+      
+      console.log(`Change to give back $${change}`);
+      change = changeCount(change,moneyValue[moneyValue.length - 2][1], moneyValue.length - 2);
+      console.log(change)
+
+      console.log(`Change to give back $${change}`);
+      change = changeCount(change,moneyValue[moneyValue.length - 3][1], moneyValue.length - 3);
+      console.log(change)
     }
   };
 
-const changeCheck = () => {
-  let diff = cash - price;
-  console.log(`Change to give back $${diff}`);
-  let test = changeCount(diff,moneyValue[moneyValue.length - 1][1]);
-  diff = hundreds(diff);
-  diff = twenties(diff)
-  diff = tens(diff);
-  console.log(diff)
-  
 
-}
-
-const changeCount = (diff, cashType, cidPlace) =>{
+const changeCount = (change, cashType, cidPlace) =>{
   const valueOfCashTypeInRegister = cid[cidPlace][1];
   const amountOfCashTypeInRegister = valueOfCashTypeInRegister / cashType;
-  const amountOfCashTypeInRegisterInChange = Math.floor(diff / cashType);
+  const amountOfCashTypeInChange = Math.floor(change / cashType);
 
-  console.log(`Amount Of Hundreds In Change ${amountOfCashTypeInRegisterInChange}`);
+  console.log(`Amount Of ${cid[cidPlace][0]} In Change ${amountOfCashTypeInChange}`);
   console.log(`amountOfCashTypeInRegister in cash register ${amountOfCashTypeInRegister}`);
   console.log(`valueOfCashTypeInRegister in cash register ${valueOfCashTypeInRegister}`);
-  diff = diff - amountOfCashTypeInRegister * cashType;
-  console.log(`Difference: ${diff}`)
-  return diff;
+
+  if( amountOfCashTypeInRegister > amountOfCashTypeInChange){
+    change = change - cashType * amountOfCashTypeInChange;
+  }
+  else{
+    
+    change = change - cashType * amountOfCashTypeInRegister;
+  }
+  console.log(`Change still: ${change}`)
+  return change;
 }
 
 
