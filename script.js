@@ -1,5 +1,5 @@
 let cid = [
-  ['PENNY', 1.01],
+  ['PENNY', 0],
   ['NICKEL', 2.05],
   ['DIME', 3.1],
   ['QUARTER', 4.25],
@@ -34,6 +34,7 @@ let cash = 0;
 let price = 1.87;
 let change = cash - price;
 let diff = price - cash;
+let registerMessage = ``;
 
 cashBtn.addEventListener("click",() =>{
     cash = cashInput.value;
@@ -52,28 +53,26 @@ const updateTotal = () => {
 };
 
 const checkPrice = () => {
+    console.log(`Cash: ${cash}`);
+    console.log(`Price: ${price}`);
     if (price > cash){
         alert("Customer does not have enough money to purchase the item");
     }
-    else if (price === cash){
+    else if (price == cash){
         alert("No change due - customer paid with exact cash");
         changeDue.value ="No change due - customer paid with exact cash";
         changeDue.innerHTML ="No change due - customer paid with exact cash";
     } 
     else{
       change = cash - price;
-      console.log(`Change to give back $${change}`);
-      change = changeCount(change,moneyValue[moneyValue.length - 1][1], moneyValue.length - 1);
-      console.log(change)
-      
-      console.log(`Change to give back $${change}`);
-      change = changeCount(change,moneyValue[moneyValue.length - 2][1], moneyValue.length - 2);
-      console.log(change)
-
-      console.log(`Change to give back $${change}`);
-      change = changeCount(change,moneyValue[moneyValue.length - 3][1], moneyValue.length - 3);
-      console.log(change)
+      for (let i = cid.length - 1; i >= 0; i--) {
+        console.log(`Change to give back $${change}`);
+        change = changeCount(change, moneyValue[i][1], i);
+        console.log(change);
+      }
+      changeDue.innerHTML=`Status: OPEN ${registerMessage}`;
     }
+    
   };
 
 
@@ -88,12 +87,20 @@ const changeCount = (change, cashType, cidPlace) =>{
 
   if( amountOfCashTypeInRegister > amountOfCashTypeInChange){
     change = change - cashType * amountOfCashTypeInChange;
+    if(cashType * amountOfCashTypeInChange != 0)
+      {
+      registerMessage += `${cid[cidPlace][0]}: $${cashType * amountOfCashTypeInChange} `;
+      };
   }
   else{
-    
     change = change - cashType * amountOfCashTypeInRegister;
+    if(cashType * amountOfCashTypeInRegister != 0){
+    registerMessage += `${cid[cidPlace][0]}: $${cashType * amountOfCashTypeInRegister} `;}
+
   }
+  change = change.toFixed(2)
   console.log(`Change still: ${change}`)
+  
   return change;
 }
 
