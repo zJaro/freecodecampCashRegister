@@ -26,8 +26,6 @@ const cashBtn = document.getElementById("purchase-btn");
 const priceBtn = document.getElementById("price-btn");
 const total = document.getElementById("total");
 const changeDue = document.getElementById("change-due");
-
-
 const cashInput = document.getElementById("cash");
 const priceInput = document.getElementById("price");
 
@@ -77,21 +75,15 @@ const changeCheck = () => {
 
 }
 
-const changeCount = (diff, cashType) =>{
-  const valueOfCashTypeInRegister = cid[cid.length - 1][1];
+const changeCount = (diff, cashType, cidPlace) =>{
+  const valueOfCashTypeInRegister = cid[cidPlace][1];
   const amountOfCashTypeInRegister = valueOfCashTypeInRegister / cashType;
   const amountOfCashTypeInRegisterInChange = Math.floor(diff / cashType);
 
   console.log(`Amount Of Hundreds In Change ${amountOfCashTypeInRegisterInChange}`);
   console.log(`amountOfCashTypeInRegister in cash register ${amountOfCashTypeInRegister}`);
   console.log(`valueOfCashTypeInRegister in cash register ${valueOfCashTypeInRegister}`);
-  if(amountOfCashTypeInRegisterInChange >= amountOfCashTypeInRegister){
-    diff = diff - amountOfCashTypeInRegister * cashType;
-  }
-  else if(amountOfCashTypeInRegisterInChange < amountOfCashTypeInRegister)
-  {
-    diff = diff - amountOfCashTypeInRegisterInChange;
-  }
+  diff = diff - amountOfCashTypeInRegister * cashType;
   console.log(`Difference: ${diff}`)
   return diff;
 }
