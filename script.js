@@ -81,7 +81,7 @@ const changeCount = (diff, cashType) =>{
   const valueOfCashTypeInRegister = cid[cid.length - 1][1];
   const amountOfCashTypeInRegister = valueOfCashTypeInRegister / cashType;
   const amountOfCashTypeInRegisterInChange = Math.floor(diff / cashType);
-  
+
   console.log(`Amount Of Hundreds In Change ${amountOfCashTypeInRegisterInChange}`);
   console.log(`amountOfCashTypeInRegister in cash register ${amountOfCashTypeInRegister}`);
   console.log(`valueOfCashTypeInRegister in cash register ${valueOfCashTypeInRegister}`);
@@ -101,58 +101,3 @@ const changeCount = (diff, cashType) =>{
 
 
 
-
-const hundreds = (diff) =>{
-  const valueOfHundreds = cid[cid.length - 1][1];
-  console.log(`valueOfHundreds in cash register ${valueOfHundreds}`);
-  const amountOfHundreds = valueOfHundreds / 100;
-  console.log(`amountOfHundreds in cash register ${amountOfHundreds}`);
-  const amountOfHundredsInChange = Math.floor(diff / 100);
-  console.log(`Amount Of Hundreds In Change ${amountOfHundredsInChange}`);
-  if(amountOfHundredsInChange >= amountOfHundreds){
-    diff = diff - amountOfHundreds * 100;
-  }
-  else if(amountOfHundredsInChange < amountOfHundreds)
-  {
-    diff = diff - amountOfHundredsInChange;
-  }
-  console.log(`Difference: ${diff}`)
-  return diff;
-}
-
-
-const twenties = (diff) =>{
-  const valueOfTwenties = cid[cid.length - 2][1];
-  console.log(`valueOfTwenties in cash register ${valueOfTwenties}`);
-  const amountOfTwenties = valueOfTwenties / 20;
-  console.log(`amountOfTwenties in cash register ${amountOfTwenties}`);
-  const amountOfTwentiesInChange = Math.floor(diff / 20);
-  console.log(`Amount Of Twenties In Change ${amountOfTwentiesInChange}`);
-  if(amountOfTwentiesInChange >= amountOfTwenties){
-    diff = diff - amountOfTwenties * 20;
-  }
-  else if(amountOfTwentiesInChange < amountOfTwenties)
-  {
-    diff = diff - amountOfTwentiesInChange;
-  }
-  console.log(`Difference: ${diff}`)
-  return diff;
-}
-
-const tens = (diff) =>{
-  const valueOfTens = cid[cid.length - 2][1];
-  console.log(`valueOfTens in cash register ${valueOfTens}`);
-  const amountOfTens = valueOfTens / 10;
-  console.log(`amountOfTens in cash register ${amountOfTens}`);
-  const amountOfTensInChange = Math.floor(diff / 10);
-  console.log(`Amount Of Tens In Change ${amountOfTensInChange}`);
-  if(amountOfTensInChange >= amountOfTens){
-    diff = diff - amountOfTens * 10;
-  }
-  else if(amountOfTensInChange < amountOfTens)
-  {
-    diff = diff - amountOfTensInChange;
-  }
-  console.log(`Difference: ${diff}`)
-  return diff;
-}
